@@ -173,6 +173,14 @@ completed Design Lock. Completing the lock requires equivalent screenshot
 capture and rendering validation under the detailed guide. If either is
 unavailable, STOP: the lock remains incomplete. Present exactly two choices and
 ask your human partner to choose: enable equivalent screenshot capture and
-validation and complete the lock, or explicitly proceed without a Design Lock.
-Do not choose for them, manufacture a PNG, use HTML as the lock artifact,
-describe screenshots as optional, or offer another fallback.
+validation and complete the lock, or continue exploration and planning without
+visual implementation. Do not choose for them, manufacture a PNG, use HTML as
+the lock artifact, describe screenshots as optional, or offer another fallback.
+
+**Supervised visual implementation hard gate:** Visual implementation must not
+begin until the exact approved PNG and human-approved governing spec are
+available in the repository. Permission to explore or plan without a completed
+Design Lock never authorizes visual implementation. The implementation plan must
+also name the complete visual-file scope and retain the final human
+screenshot-and-diff acceptance checkpoint described in
+`superpowers:writing-plans`.

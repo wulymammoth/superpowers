@@ -323,11 +323,16 @@ survives into the spec, plan, and implementation:
    viewport and PNG dimensions, theme, state, capture tool family, fidelity,
    authoritative sources, approval, and 3–7 load-bearing properties per image.
 
+Visual implementation must not begin until the exact approved PNG and
+human-approved governing spec are available in the repository. A choice to
+continue without a completed Design Lock authorizes exploration and planning
+only. It does not authorize visual implementation.
+
 If screenshot capability or rendering validation is unavailable, state that the
-lock is incomplete. Offer to enable equivalent capture or explicitly proceed
-without a Design Lock; there is no HTML fallback. Pre-commit changes replace the
-pending PNG and require fresh approval. Post-commit changes create a versioned
-PNG and update the spec.
+lock is incomplete. Offer to enable equivalent capture or continue exploration
+and planning without visual implementation; there is no HTML fallback.
+Pre-commit changes replace the pending PNG and require fresh approval.
+Post-commit changes create a versioned PNG and update the spec.
 
 ## Design Tips
 

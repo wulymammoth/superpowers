@@ -127,14 +127,27 @@ git commit -m "feat: add specific feature"
 
 ## Design Lock Threading
 
-If the spec contains a v2 Design Lock with approved PNG screenshots:
+Visual implementation must not begin unless the human-approved governing spec
+contains a v2 Design Lock with the exact approved PNG screenshots. Exploration
+and planning may identify what is missing, but an implementation plan must stop
+at this gate until the lock is complete.
+
+For a completed v2 Design Lock:
 
 - Copy the fidelity decision, authoritative source paths, artifact paths,
   viewport, PNG dimensions, capture tool family, theme, state, and load-bearing
   properties into **Global Constraints** verbatim.
+- Add a **Visual file allowlist** to **Global Constraints**. It is the exhaustive
+  list of repository-relative visual files the implementer may modify. Every
+  create, modify, rename, or delete path in a locked visual task must be in that
+  allowlist. If implementation needs a path outside the allowlist, STOP and
+  obtain fresh explicit approval before changing it.
 - For every task that implements UI covered by a locked screenshot:
   - Add the PNG to the task's **Files** block:
     `Read: docs/superpowers/specs/assets/.../screen--state--WIDTHxHEIGHT.png (approved locked design)`
+  - Repeat the applicable entries from the visual file allowlist in the task's
+    **Files** block. Do not include unrelated source, test, configuration, or
+    documentation paths merely because they are nearby.
   - Repeat the relevant viewport, PNG dimensions, capture tool family, theme,
     state, fidelity, and load-bearing properties inside the task so its
     implementer has the complete contract.
@@ -148,10 +161,20 @@ claim the comparison passed. It must obtain equivalent tooling or report
 verification as incomplete. Textual properties improve clarity but do not
 silently replace the visual comparison. Automated pixel diffing is optional.
 
+After all locked visual tasks pass their technical checks, add exactly one final
+human checkpoint before accepting visual completion:
+
+1. Capture the final runtime screenshot under the locked conditions.
+2. Present it beside the approved PNG together with the diff limited to the
+   visual file allowlist.
+3. Ask for one final human review. The work remains incomplete until the human
+   explicitly accepts the screenshot and diff. Revisions return to implementation
+   and repeat this checkpoint with fresh evidence.
+
 If the spec contains only a legacy HTML Design Lock, stop before writing the
-plan. Identify it as legacy and ask the user to choose migration to an approved
-PNG lock or explicit continuation without a v2 Design Lock. Never treat the HTML
-as a completed v2 lock or add a DOM/style-diff fallback.
+plan. Identify it as legacy and require migration to an approved PNG lock before
+visual implementation. Never treat the HTML as a completed v2 lock or add a
+DOM/style-diff fallback.
 
 Plans are self-contained and a task's implementer sees only their own task —
 this threading is how the approved visual contract reaches them.

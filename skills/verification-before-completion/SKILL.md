@@ -35,6 +35,23 @@ BEFORE claiming any status or expressing satisfaction:
 Skip any step = lying, not verifying
 ```
 
+## Visual Completion Claims
+
+When an approved Design Lock governs the work, fresh command output is necessary
+but not sufficient. Before requesting acceptance:
+
+1. Confirm the human-approved governing spec and exact approved PNG are present.
+2. Confirm every changed path is inside the plan's visual file allowlist.
+3. Capture the final runtime screenshot under the locked conditions.
+4. Present that screenshot beside the approved PNG and present the diff limited
+   to the visual file allowlist.
+
+You must not claim the implementation is visually complete until the human has
+explicitly accepted the final screenshot and diff. Until then, report the work
+as awaiting visual acceptance even when every automated check passes. Any agent
+success wording that bypasses this checkpoint is an unattended visual completion
+claim and violates the gate.
+
 ## Common Failures
 
 | Claim | Requires | Not Sufficient |
