@@ -18,9 +18,10 @@ disagree.
   `spawn_agent {fork_turns: "none"}`; the default `"all"` copies your
   entire transcript into the child. On Codex 0.145+, role files under
   `~/.codex/agents/` attach to isolated forks via `agent_type`.
-  Full-history forks accept `model` and `reasoning_effort` overrides
-  (only `agent_type` is refused there) — isolated forks are the SDD
-  default for context hygiene, not because overrides require them.
+  Full-history forks inherit the parent model and effort and do not accept
+  overrides in the current runtime. For an authorized override, use
+  `fork_turns: "none"` or a supported positive turn count. Treat the live
+  tool schema as authoritative for roles and all other parameters.
 - **Fix rounds:** resume the implementer with `followup_task` — it
   delivers your message, triggers a turn, and transparently reloads a
   child the harness evicted. Never dispatch a fresh implementer on the
@@ -61,11 +62,10 @@ two-thirds of all wait calls were short polls that timed out.
 
 ## Model routing on spawns
 
-Every `spawn_agent` you issue — including when you are yourself a
-spawned child running a fan-out — sets `model` AND `reasoning_effort`
-explicitly, per the Model Selection rules of the skill you are
-executing. Setting `model` alone is a trap: the child's effort
-silently resets to that model's default, not to yours.
+Use model and reasoning-effort overrides only when authorized by the user
+or applicable instructions and accepted by the live tool schema. Full-history
+forks inherit both; omit overrides there. For an authorized isolated fork,
+select an available model and effort appropriate to the task.
 
 Ask your human partner to add a machine-level backstop to
 `~/.codex/config.toml` so any spawn that slips through still routes to
@@ -90,16 +90,17 @@ BRANCH=$(git branch --show-current)
 ```
 
 - `GIT_DIR != GIT_COMMON` → already in a linked worktree (skip creation)
-- `BRANCH` empty → detached HEAD (cannot branch/push/PR from sandbox)
+- `BRANCH` empty → detached HEAD; this alone proves no branch/push/PR restriction. Check the actual tool capabilities and permission results.
 
 See `using-git-worktrees` Step 0 and `finishing-a-development-branch`
 Step 1 for how each skill uses these signals.
 
 ## Codex App Finishing
 
-When the sandbox blocks branch/push operations (detached HEAD in an
-externally managed worktree), the agent commits all work and informs
-the user to use the App's native controls:
+When an actual sandbox or tool failure blocks an authorized branch/push
+operation, complete only the permitted, authorized local work. Offer the
+App's native controls if they are available; detached HEAD alone is not
+evidence of that failure:
 
 - **"Create branch"** — names the branch, then commit/push/PR via App UI
 - **"Hand off to local"** — transfers work to the user's local checkout

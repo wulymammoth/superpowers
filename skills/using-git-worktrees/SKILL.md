@@ -5,6 +5,10 @@ description: Use when starting feature work that needs isolation from current wo
 
 # Using Git Worktrees
 
+## Repository authority
+
+Repository lifecycle commands and startup-checkout restrictions take precedence over the fallback examples below. A failed repository guard stops dependent writes; do not substitute generic Git commands. If policy requires restarting Codex in a new worktree, create it through the approved lifecycle, then hand off for a new session there. Do not implement across roots by changing workdir or using absolute paths. Ordinary single-task ownership does not imply multi-writer orchestration.
+
 ## Overview
 
 Ensure work happens in an isolated workspace. Prefer your platform's native worktree tools. Fall back to manual git worktrees only when no native tool is available.
@@ -91,13 +95,13 @@ git check-ignore -q .worktrees 2>/dev/null || git check-ignore -q worktrees 2>/d
 
 ```bash
 # Determine path based on chosen location
-path="$LOCATION/$BRANCH_NAME"
+worktree_path="$LOCATION/$BRANCH_NAME"
 
-git worktree add "$path" -b "$BRANCH_NAME"
-cd "$path"
+git worktree add "$worktree_path" -b "$BRANCH_NAME"
+cd "$worktree_path"
 ```
 
-**Sandbox fallback:** If `git worktree add` fails with a permission error (sandbox denial), tell the user the sandbox blocked worktree creation and you're working in the current directory instead. Then run setup and baseline tests in place.
+**Creation failure:** If required worktree creation fails, stop dependent writes and report the failure. Do not switch to in-place implementation or another creation route to bypass a guard or denial. Continue only after the required lifecycle succeeds or the human explicitly authorizes an applicable policy exception.
 
 ## Step 2: Project Setup
 
@@ -152,7 +156,7 @@ Ready to implement <feature-name>
 | Both exist | Use `.worktrees/` |
 | Neither exists | Check instruction file, then default `.worktrees/` |
 | Directory not ignored | Add to .gitignore + commit |
-| Permission error on create | Sandbox fallback, work in place |
+| Permission error on create | Stop dependent writes; report and resolve the failure |
 | Tests fail during baseline | Report failures + ask |
 | No package.json/Cargo.toml | Skip dependency install |
 
