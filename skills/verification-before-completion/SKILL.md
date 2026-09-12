@@ -1,44 +1,42 @@
 ---
 name: verification-before-completion
-description: Use when about to claim work is complete, fixed, or passing, before committing or creating PRs - requires running verification commands and confirming output before making any success claims; evidence before assertions always
+description: Use when reporting implementation complete, a bug fixed, or checks passing, and before an authorized commit or pull request.
 ---
 
 # Verification Before Completion
 
-## Overview
+Claims must match observed evidence for the code and environment being reported.
 
-**Core principle:** Evidence before claims, always.
+## Evidence and scope
 
-**Violating the letter of this rule is violating the spirit of this rule.**
+1. Identify the smallest sufficient check for the claim and task risk. A focused
+   suite supports a focused claim; a full-suite claim needs the full suite.
+2. Run missing checks and inspect the completed output and exit status. Reuse
+   observed results while relevant code, inputs, dependencies, and environment
+   remain unchanged. A new message or unchanged checkpoint alone needs no rerun.
+3. Rerun affected checks after changes, failures, or new uncertainty. If state
+   cannot be established after resume, verify again rather than assume.
+4. Fix failures caused by the requested change within the authorized workflow.
+   Report unrelated failures or unavailable checks without claiming a pass.
+5. Report what passed, what it proves, and material gaps. Confirm the requested
+   outcome, not just test success. A disclosed gap does not satisfy a required
+   acceptance check; that outcome remains incomplete. Repository base/mergeability
+   checks still apply.
 
-## The Iron Law
+A linter does not prove a build, a passing mock does not prove installed runtime,
+and an agent's success report does not replace inspecting its changes and evidence.
+For a bug fix, exercise the original symptom. Demonstrate the regression fails
+without the fix and passes with it when practical; preserve unrelated work while
+making any temporary reversal. State explicitly when that proof is unavailable.
 
-```
-NO COMPLETION CLAIMS WITHOUT FRESH VERIFICATION EVIDENCE
-```
-
-If you haven't run the verification command in this message, you cannot claim it passes.
-
-## The Gate Function
-
-```
-BEFORE claiming any status or expressing satisfaction:
-
-1. IDENTIFY: What command proves this claim?
-2. RUN: Execute the FULL command (fresh, complete)
-3. READ: Full output, check exit code, count failures
-4. VERIFY: Does output confirm the claim?
-   - If NO: State actual status with evidence
-   - If YES: State claim WITH evidence
-5. ONLY THEN: Make the claim
-
-Skip any step = lying, not verifying
-```
+Existing authorization covers continuing through appropriate local verification;
+it does not authorize deployment, shared-runtime use, or other external actions.
 
 ## Visual Completion Claims
 
-When an approved Design Lock governs the work, fresh command output is necessary
-but not sufficient. Before requesting acceptance:
+When an approved Design Lock governs the work, applicable observed command
+output is necessary but not sufficient. Evidence reuse follows the rules above.
+Before requesting acceptance:
 
 1. Confirm the human-approved governing spec and exact approved PNG are present.
 2. Confirm every changed path is inside the plan's visual file allowlist.
@@ -51,87 +49,3 @@ explicitly accepted the final screenshot and diff. Until then, report the work
 as awaiting visual acceptance even when every automated check passes. Any agent
 success wording that bypasses this checkpoint is an unattended visual completion
 claim and violates the gate.
-
-## Common Failures
-
-| Claim | Requires | Not Sufficient |
-|-------|----------|----------------|
-| Tests pass | Test command output: 0 failures | Previous run, "should pass" |
-| Linter clean | Linter output: 0 errors | Partial check, extrapolation |
-| Build succeeds | Build command: exit 0 | Linter passing, logs look good |
-| Bug fixed | Test original symptom: passes | Code changed, assumed fixed |
-| Regression test works | Red-green cycle verified | Test passes once |
-| Agent completed | VCS diff shows changes | Agent reports "success" |
-| Requirements met | Line-by-line checklist | Tests passing |
-
-## Red Flags - STOP
-
-- Using "should", "probably", "seems to"
-- Expressing satisfaction before verification ("Great!", "Perfect!", "Done!", etc.)
-- About to commit/push/PR without verification
-- Trusting agent success reports
-- Relying on partial verification
-- Thinking "just this once"
-- Tired and wanting work over
-- **ANY wording implying success without having run verification**
-
-## Rationalization Prevention
-
-| Excuse | Reality |
-|--------|---------|
-| "Should work now" | RUN the verification |
-| "I'm confident" | Confidence ≠ evidence |
-| "Just this once" | No exceptions |
-| "Linter passed" | Linter ≠ compiler |
-| "Agent said success" | Verify independently |
-| "I'm tired" | Exhaustion ≠ excuse |
-| "Partial check is enough" | Partial proves nothing |
-| "Different words so rule doesn't apply" | Spirit over letter |
-
-## Key Patterns
-
-**Tests:**
-```
-✅ [Run test command] [See: 34/34 pass] "All tests pass"
-❌ "Should pass now" / "Looks correct"
-```
-
-**Regression tests (TDD Red-Green):**
-```
-✅ Write → Run (pass) → Revert fix → Run (MUST FAIL) → Restore → Run (pass)
-❌ "I've written a regression test" (without red-green verification)
-```
-
-**Build:**
-```
-✅ [Run build] [See: exit 0] "Build passes"
-❌ "Linter passed" (linter doesn't check compilation)
-```
-
-**Requirements:**
-```
-✅ Re-read plan → Create checklist → Verify each → Report gaps or completion
-❌ "Tests pass, phase complete"
-```
-
-**Agent delegation:**
-```
-✅ Agent reports success → Check VCS diff → Verify changes → Report actual state
-❌ Trust agent report
-```
-
-## When To Apply
-
-**ALWAYS before:**
-- ANY variation of success/completion claims
-- ANY expression of satisfaction
-- ANY positive statement about work state
-- Committing, PR creation, task completion
-- Moving to next task
-- Delegating to agents
-
-**Rule applies to:**
-- Exact phrases
-- Paraphrases and synonyms
-- Implications of success
-- ANY communication suggesting completion/correctness
