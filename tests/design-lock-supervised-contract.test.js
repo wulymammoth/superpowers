@@ -49,3 +49,11 @@ test('visual completion cannot be claimed unattended', () => {
   );
   assert.match(verification, /unattended visual completion\s+claim/i);
 });
+
+test('both execution methods preserve Design Lock gates over autonomous rulings', () => {
+  for (const method of ['executing-plans', 'subagent-driven-development']) {
+    const content = read(`skills/${method}/SKILL.md`);
+    assert.match(content, /Design Lock precedence/);
+    assert.match(content, /ruling cannot waive these\s+gates, expand that allowlist, or replace final human screenshot-and-diff\s+acceptance/i);
+  }
+});

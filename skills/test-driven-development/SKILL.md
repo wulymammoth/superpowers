@@ -165,6 +165,11 @@ Confirm:
 **Other tests fail?** Fix failures caused by the change. Report unrelated failures
 without expanding the task silently.
 
+A green focused test is not evidence that the whole project suite passed.
+Run the affected checks and any broader suite required by repository policy or
+the change's risk. Describe the scope actually verified. Report every observed
+failure, including unrelated failures, rather than omitting it from the result.
+
 ### REFACTOR - Clean Up
 
 After green only:
