@@ -1,6 +1,6 @@
 ---
 name: using-superpowers
-description: Use when selecting a Superpowers workflow for substantive design, debugging, implementation, review, or delivery tasks.
+description: Use when starting any conversation involving substantive design, debugging, implementation, review, or delivery, or selecting a Superpowers workflow for those tasks.
 ---
 
 <SUBAGENT-STOP>

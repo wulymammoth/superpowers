@@ -1,192 +1,279 @@
 ---
 name: brainstorming
-description: Use when exploring a new feature or architecture, resolving material design choices, or creating, finalizing, or applying a visual Design Lock.
+description: Use when exploring a new feature, project, or architecture, resolving material design choices, or creating, finalizing, or applying a visual Design Lock.
 ---
 
-# Brainstorming Ideas Into Designs
+# Brainstorming
 
-Help turn ideas into fully formed designs and specs through natural collaborative dialogue.
+You are very good at building. You build what you believe your human
+partner wants, and that belief is usually thinner than it feels. This
+skill is for finding out what they actually want, and why, before
+anything gets built.
 
-Use this workflow when design decisions remain unresolved. For a mechanical
-nonvisual edit or implementation of an already approved nonvisual design, proceed with
-the authorized work and proportionate verification. Do not restart brainstorming.
-For approved visual work, reuse the design through the Design Lock route below.
+People often haven't finished working out what they want. Good questions
+help them think it through. When you understand the why, you make the
+hundred decisions they never mention the way they would have made them.
 
-## Establish Shared Understanding
+## Authorization and Design Lock Precedence
 
-The outcome of brainstorming is an understanding your human partner can
-recognize and correct, grounded in what they want to accomplish.
+Use this conversation when design decisions remain unresolved. For a mechanical
+nonvisual edit or implementation of an already approved nonvisual design, proceed
+with the authorized work and proportionate verification. Do not restart
+brainstorming or ask again for an already selected execution method.
 
-1. **Discover intent.** Use the request and available context to identify
-   the intended outcome, who it is for, and what success looks like. When
-   that information is missing, ask one focused question about purpose or
-   intended use before proposing features or an approach. Knowing the app
-   genre does not tell you why your partner wants it. Gathering missing
-   requirements does not ask them to authorize the task again.
-2. **Write back your understanding.** Summarize the intended outcome,
-   relevant constraints, and success criteria in a short note your partner
-   can assess. Separate what they said from assumptions. Invite correction
-   and incorporate their answer before treating this as the design brief.
-3. **Carry intent into the design.** Preserve the agreed understanding in
-   the selected path's design artifact: the written spec for architectural
-   work, or the in-chat design/probe for bounded work and spikes. Check
-   proposed features and technical choices against that understanding.
+Reuse existing authorization while scope, destination, risk, and outcome are
+unchanged. An explicit request specifying the intended change or an earlier
+approval supplies that authorization. Ask again when a material decision is
+missing or those conditions change. Repository ownership and shipping boundaries
+still apply.
 
-When the request already supplies the purpose and constraints, reflect
-that understanding instead of asking the same questions again. Keep the
-note concise; its accuracy and the opportunity to correct it matter.
+**Design Lock precedence:** Skipping questions does not waive authorization or
+Design Lock requirements. Creating or finalizing a Design Lock, or implementing
+visual changes, even a one-file fix, requires the written governing spec and
+`superpowers:writing-plans`. Reuse an existing approved spec and lock; the quick
+task and small-change shortcuts cannot replace them. The plan retains the visual
+file allowlist and final human screenshot-and-diff acceptance checkpoint.
+Approved throwaway visual exploration may remain a spike, subject to the
+existing-UI authority and capture gates below; exploration approval does not
+authorize visual implementation or retention of the prototype.
 
-## Authorization
+## First: What Do You Actually Know?
 
-Before implementing an unresolved design, present the proposed behavior and
-obtain your human partner's approval. An explicit request that already specifies
-the intended change, or approval earlier in the conversation, supplies that
-authorization. Reuse it while scope, destination, risk, and outcome are unchanged.
-Ask again when a material decision is missing or those conditions change.
-Repository ownership and shipping boundaries still apply. Approval to implement
-does not replace the final human acceptance required by a visual Design Lock.
+Before you reply, ask yourself: what do I know about what they want, and
+why?
 
-## Three Paths
+- **Everything that matters is in the request** ("make the icon cornflower
+  blue"). This is a quick, clear task. Apply the authorization and Design Lock
+  rules above, do the authorized work, and say what you did.
+- **Something non-trivial is missing.** Start the conversation.
 
-**Design Lock routing:** Creating or finalizing a Design Lock, or implementing
-visual changes, takes the architectural path below, even for a one-file fix.
-Use the written governing spec and `superpowers:writing-plans`; an existing
-approved spec may be reused. The plan must retain the visual file allowlist
-and final human screenshot-and-diff acceptance checkpoint. The bounded path's
-no-document shortcut does not apply to this work. Throwaway visual exploration
-may remain a spike, subject to the existing-UI authority and capture gates below;
-exploration approval does not authorize visual implementation.
+## Your First Message
 
-Choose the path from the actual work:
+Your first message is two things, in this order:
 
-- **Spike:** Investigate a feasibility question and report evidence and limits.
-  State a short probe plan and proceed with authorized read-only or disposable
-  local work. Obtain approval for actions outside that scope. Keeping prototype
-  code as a product change requires implementation authorization.
-- **Bounded:** For unresolved behavior in an existing flow, inspect the relevant
-  code, ask only material questions, and present a short design with verification.
-  Obtain approval if the proposed change is not already authorized, then implement.
-  Nonvisual bounded work does not need a separate spec or plan document.
-- **Architectural:** For a new project, subsystem, or material interface change,
-  compare useful approaches, settle the design with your human partner, and write
-  the governing spec. Review it for gaps, obtain approval of unresolved decisions,
-  then use `superpowers:writing-plans`. Reuse an already approved governing spec.
+1. One line letting them know that if they'd rather skip the questions and
+   have you just start, they can say so. If they take you up on it, this
+   conversation is done: state any significant how-it-gets-made choice
+   (platform, language, medium) in one plain line, then do what they
+   asked through the normal workflow, retaining the authorization and
+   Design Lock requirements above.
+2. One open question that gets them describing. Ask about a real moment
+   or a concrete picture: "What's the moment you find yourself wishing
+   this existed?" or "Tell me about the people who'll be in the room."
 
-Hidden complexity warrants reassessing the plan. Pause dependent work when it
-introduces a material unapproved decision; continue independent authorized work.
+That's the whole message.
 
-## Completion
+## The Conversation
 
-Carry the selected path through its outcome: an evidence-backed answer for a
-spike, verified implementation for approved bounded work, or an approved spec
-and implementation plan for architectural design. When implementation is already
-authorized, continue into its execution workflow without another approval.
-Continue through failures
-caused by the change within the authorized workflow. Report a concrete blocker
-or remaining approval boundary when completion is unavailable.
+Each message ends with one question: a single sentence with no list of
+example answers hanging off it. Use plain language, pitched just a little
+above where your human partner is. Match their vocabulary; never use
+process jargon.
 
-## The Process
+Be clear and concise. Lead with what matters. Avoid jargon. When you
+report what you found, give them the most important findings and offer
+the rest.
 
-The subsections below serve the bounded and architectural paths (a
-spike ends with an evidence-backed recommendation). Sections from
-**Exploring approaches** onward are architectural-path depth — for
-bounded work, context plus a few questions plus a short in-chat design
-is the whole process.
+**Get them describing.** Open questions come first. Their own words carry
+intent that your options can't. Offer a short menu only when they're
+stuck. When they say "just guess" or "what do you think?", propose
+something concrete.
 
-**Understanding the idea:**
+**How it gets made.** Every project rests on choices about medium, tools,
+materials, and resources: the platform, programming language, and
+libraries for an app; the medium for a piece of art. Find out early which
+of those choices they want to make, which they're handing to you, and what
+they already have to work with. Someone with strong views or skills will
+want to talk it through. Someone counting on you needs sensible defaults,
+said in plain words. When there's existing work, build on what it already
+uses. Any choice you make goes in the design as your call, never as
+something they agreed to.
 
-- Check out the current project state first (files, docs, recent commits)
-- Before asking detailed questions, assess scope: if the request describes multiple independent subsystems (e.g., "build a platform with chat, file storage, billing, and analytics"), flag this immediately. Don't spend questions refining details of a project that needs to be decomposed first.
-- If the project is too large for a single spec, help the user decompose into sub-projects: what are the independent pieces, how do they relate, what order should they be built? Then brainstorm the first sub-project through the normal design flow. Each sub-project gets its own spec → plan → implementation cycle.
-- Ask questions when the answer materially changes the design
-- Prefer multiple choice questions when possible, but open-ended is fine too
-- Focus on understanding: purpose, constraints, success criteria
+**Ground to cover.** This is territory, not a script. Never read these
+out as questions:
 
-**Exploring approaches:**
+- what kind of thing this is, and what makes it special
+- why now, and what success looks like to them
+- goals, non-goals, and anti-goals (what would make this a failure even
+  if it technically works)
+- prior art: what they've seen elsewhere, loved or hated
+- current state: what exists now, what they've tried
+- the details they care about
 
-- Propose 2-3 different approaches with trade-offs
-- Present options conversationally with your recommendation and reasoning
-- Lead with your recommended option and explain why
-- YAGNI ruthlessly - remove unnecessary features from every approach and design
+**Questions that work** anchor in specifics: "Walk me through the last
+time...", "If it could only do one of these well, which?", "What would
+make you wince if I got it wrong?" A guess they can correct ("I'm
+guessing this is because X keeps biting you?") often beats a question.
 
-**Presenting the design:**
+**Offer recon.** Once you have a bit of grounding and looking would help,
+offer to go look: their codebase or project, their own files and data,
+or the web. Say what you'd look for. They decide whether you go.
 
-- Once you believe you understand what you're building, present the design
-- Scale each section to its complexity: a few sentences if straightforward, up to 200-300 words if nuanced
-- Ask for decisions on unresolved trade-offs; reuse approvals already given
-- Cover: architecture, components, data flow, error handling, testing
-- Be ready to go back and clarify if something doesn't make sense
+**Think wide privately.** Before you propose anything, come up with
+several ideas and drop the weak ones, including any that fight what
+they've told you about why. Show the comparison only when it helps them
+decide.
 
-**Design for isolation and clarity:**
+**Show, don't tell.** Offer the visual companion (below) whenever seeing
+would help more than reading:
 
-- Break the system into smaller units that each have one clear purpose, communicate through well-defined interfaces, and can be understood and tested independently
-- For each unit, you should be able to answer: what does it do, how do you use it, and what does it depend on?
-- Can someone understand what a unit does without reading its internals? Can you change the internals without breaking consumers? If not, the boundaries need work.
-- Smaller, well-bounded units are also easier for you to work with - you reason better about code you can hold in context at once, and your edits are more reliable when files are focused. When a file grows large, that's often a signal that it's doing too much.
+- something they'll look at: a screen, a page, a printout, a sign
+- a layout or arrangement: of a screen, a room, a schedule
+- a flow or a sequence of steps
+- options that would look different from each other
+- a structure that's easier to see than read: a diagram, a timeline, a map
 
-**Working in existing codebases:**
+Once they've accepted, use it for mockups to react to, side-by-side
+options, and throwaway prototypes they can click.
 
-- Explore the current structure before proposing changes. Follow existing patterns.
-- Where existing code has problems that affect the work (e.g., a file that's grown too large, unclear boundaries, tangled responsibilities), include targeted improvements as part of the design - the way a good developer improves code they're working in.
-- Don't propose unrelated refactoring. Stay focused on what serves the current goal.
+**Spike to feel things out.** Agentic work is waterfall, but very, very
+fast. A quick throwaway build is often the cheapest way to learn what
+they want or whether something works. Offer one when it would help.
+When they just want to spike, get out of the way. Spikes get no tests
+or minimal ones, aren't bulletproof, and skip the plan, implementation,
+and review process. Bring what the spike taught you back into the
+conversation.
 
-## After the Design (architectural path)
+## Play It Back
 
-**Documentation:**
+Play back as you go. As soon as you understand one part well enough to
+describe it (what it's for and who it serves, say, or how one piece
+behaves), describe that part back in about 200-300 words, then return to
+questions about the next part. Playback and questions alternate through
+the whole conversation; the last chunk covers whatever is left.
 
-- Write the validated design (spec) to `docs/superpowers/specs/YYYY-MM-DD-<topic>-design.md`
-  - (User preferences for spec location override this default)
-- If the visual companion was used and designs were locked, include a **Design Lock** section in the spec:
-  - **Artifact table** — screen, state, theme, approved viewport, actual PNG pixel dimensions, committed PNG path, and capture tool family
-  - **Fidelity decision** — "match the approved screenshot as rendered" or a precisely bounded adaptation, naming the actual design-system sources
-  - **Authoritative sources** — repository paths plus the resolution of material conflicts between documentation, source tokens, generated output, and implementation
-  - **Load-bearing properties** — 3–7 plain-language bullets per screenshot naming what must survive implementation
-  - **Approval statement** — confirmation that the saved PNG itself was presented and approved
-- Use elements-of-style:writing-clearly-and-concisely skill if available
-- Include approved PNG artifacts under `docs/superpowers/specs/assets/`; commit
-  the design and artifacts when the delivery authorization includes commits.
+Mark anything you're guessing as your guess; only what they said goes in
+as theirs. End each chunk by asking what's wrong or missing.
 
-**Spec Self-Review:**
-After writing the spec document, look at it with fresh eyes:
+Before you send a chunk, check it: does it describe something they'll
+look at, like a page, a screen, a schedule, or a printout? If so, and
+they haven't seen the visual companion offer yet, send the offer instead
+(its own message, below) and hold the chunk for the next message. Once
+they've accepted, put a mockup next to the description.
 
-1. **Placeholder scan:** Any "TBD", "TODO", incomplete sections, or vague requirements? Fix them.
-2. **Internal consistency:** Do any sections contradict each other? Does the architecture match the feature descriptions?
-3. **Scope check:** Is this focused enough for a single implementation plan, or does it need decomposition?
-4. **Ambiguity check:** Could any requirement be interpreted two different ways? If so, pick one and make it explicit.
-5. **Design lock check:** If the spec has a Design Lock section, does every required PNG exist and open, do recorded image dimensions match, is every load-bearing viewport represented, are source paths valid, is the artifact safe to commit, and was the saved PNG itself approved? New locks must not cite HTML visual artifacts.
+## Size the Work
 
-Fix any issues inline. No need to re-review — just fix and move on.
+Once you understand what they want, pick a size and say it in plain
+words. They can override it.
 
-**User Review Gate:**
-Present the written spec for approval when its decisions have not already been
-approved. If your human partner requests changes, revise and check it again.
-An existing approved spec need not be approved again unless its scope or material
-decisions change. A newly finalized visual Design Lock still requires approval
-of the saved PNG itself and its governing spec.
+| Size | The full description | Then |
+|------|----------------------|------|
+| A quick, clear task | the request itself | do it |
+| A small change | in chat | build it through the normal workflow |
+| A project with a written design | a written design document | a full plan (for software: superpowers:writing-plans) |
 
-**Implementation:**
+Visual implementation and Design Lock finalization always use the written-design
+and writing-plans route, regardless of size or an opt-out from questions.
 
-- Invoke the writing-plans skill to create a detailed implementation plan
-- Do NOT invoke any other skill. writing-plans is the next step.
+If it grows mid-task, stop, say so, and step up a size.
+
+If this is really several independent projects, say so, agree on an
+order, and brainstorm them one at a time.
+
+## The Written Design
+
+For a project, write a plain document a talented builder in the domain
+could plan from without going back to your human partner. Cover:
+
+- intent and the why
+- goals, non-goals, anti-goals
+- constraints
+- the parts of the how they decided, as they decided them
+- what's left to the builder
+
+**Where it goes:** in a software repo,
+`docs/superpowers/specs/YYYY-MM-DD-<topic>-design.md`, committed.
+Otherwise, ask. Your human partner's preferences override both.
+Commit the document and artifacts when the delivery authorization includes commits.
+
+For a visual design, include the **Design Lock** contract:
+
+- **Artifact table:** screen, state, theme, approved viewport, actual PNG pixel
+  dimensions, committed PNG path, and capture tool family.
+- **Fidelity decision:** match the approved screenshot as rendered, or name the
+  precisely bounded adaptation and its design-system sources.
+- **Authoritative sources:** repository paths and the human's resolution of
+  material conflicts between documentation, tokens, generated output, and UI.
+- **Load-bearing properties:** 3–7 plain-language properties per screenshot.
+- **Approval statement:** the exact saved PNG itself was presented and approved.
+
+Keep approved PNGs under `docs/superpowers/specs/assets/`. Before handoff, verify
+that each required PNG exists, is readable, has the recorded dimensions, covers
+every load-bearing viewport, and is safe to commit; verify source paths and
+spec consistency too. HTML is not a new v2 lock artifact. A live mockup's approval
+does not replace approval of the saved PNG and governing spec.
+
+**Builder check:** dispatch a fresh subagent with
+`builder-check-prompt.md` in this directory. When you tell your human
+partner you're writing it up, say a reviewer will read it first and you
+may come back once with a few questions. Don't hand over the document
+until the check is back. Sort what the builder asks into three piles:
+
+- **Answered already** by the conversation or the project: put the answer
+  in the document.
+- **Minor:** a sensible builder could settle it without changing what gets
+  built. Settle it yourself and mark it in the document as your call.
+- **Theirs:** only your human partner can answer it, and the answer changes
+  what gets built.
+
+Bring the "theirs" pile in one message, most important first. Update the
+document with their answers, then hand it over with a short list of the
+calls you made so they can check those while reading. That's the only
+round of questions the check produces. Without a subagent tool, read the
+document as that builder yourself.
+
+<HARD-GATE>
+For unresolved designs, nothing gets built until your human partner approves the
+full description: in chat for a small nonvisual change, the document for a
+project or visual implementation. Reuse approval already supplied as described
+above; do not restart a completed design or planning step.
+Building includes writing product code, scaffolding, installing
+dependencies, creating projects, and invoking an implementation skill.
+Reading and exploring are fine.
+
+Two exceptions to the conversation gate. If they opted out of the questions,
+continue the authorized work while retaining Design Lock requirements. A spike
+they said yes to may be built; it
+stays labeled throwaway, and keeping what it produced is a new request
+that comes back through this gate and any applicable Design Lock prerequisites.
+
+After a project's document is approved, the next step is the plan. For
+software, invoke superpowers:writing-plans and no other skill.
+</HARD-GATE>
+
+## Red Flags
+
+| Thought | Reality |
+|---------|---------|
+| "I'll offer options to save them effort" | Options steer. Ask them to describe it first. |
+| "I'll fill in sensible defaults" | Good. Say them out loud. A default they never heard is one they couldn't reject. |
+| "I should explain the process first" | Ask your question. The process shows itself. |
+| "They said 'sounds good' to the idea" | Approval covers what you showed them. A description you haven't written isn't approved. |
+| "The spike works, I'll keep building on it" | Keeping it is a new request. Back through the gate. |
+| "They said skip questions, so I can skip the visual lock" | Only the conversation was skipped; Design Lock still governs implementation. |
+| "It's only a one-file color change" | Visual implementation still needs the written spec, approved PNG, and writing-plans route. |
 
 ## Visual Companion
 
-A browser-based companion for showing mockups, diagrams, and visual options during brainstorming. Available as a tool — not a mode. Accepting the companion means it's available for questions that benefit from visual treatment; it does NOT mean every question goes through the browser.
+A browser tab for showing mockups, diagrams, and prototypes. It's a
+tool, not a mode: accepting it doesn't send every question to the
+browser.
 
-**Offering the companion (just-in-time):** Do NOT offer it upfront. Wait until a question would genuinely be clearer shown than told — a real mockup / layout / diagram question, not merely a UI *topic*. The first time that happens, offer it then, as its own message:
-> "This next part might be easier if I show you — I can put together mockups, diagrams, and comparisons in a browser tab as we go. It's still new and can be token-intensive. Want me to? I'll open it for you."
+**Offer it just-in-time.** Offer it the first time one of the moments
+above comes up, never upfront. The offer is its own message with nothing
+else in it:
 
-**This offer MUST be its own message.** Only the offer — no clarifying question, summary, or other content. Wait for the user's response. If they accept, start the server with `--open` so their browser opens to the first screen automatically. If they decline, continue text-only and don't offer again unless they raise it.
+> "This might be easier if I show you. Want me to open a browser tab with some mockups?"
 
-**Per-question decision:** Even after the user accepts, decide FOR EACH QUESTION whether to use the browser or the terminal. The test: **would the user understand this better by seeing it than reading it?**
+If they decline, stay in text and don't offer again unless they raise it.
 
-- **Use the browser** for content that IS visual — mockups, wireframes, layout comparisons, architecture diagrams, side-by-side visual designs
-- **Use the terminal** for content that is text — requirements questions, conceptual choices, tradeoff lists, A/B/C/D text options, scope decisions
+**Per question, ask: would they understand this better by seeing it?**
+Mockups, layouts, diagrams, and side-by-side designs go in the browser.
+Requirements, scope, tradeoffs, and conceptual choices stay in text. A
+question about a UI topic isn't automatically a visual question.
 
-A question about a UI topic is not automatically a visual question. "What does personality mean in this context?" is a conceptual question — use the terminal. "Which wizard layout works better?" is a visual question — use the browser.
-
-If they agree to the companion, read the detailed guide before proceeding:
-`skills/brainstorming/visual-companion.md`
+If they accept, read `visual-companion.md` in this directory before
+starting the server with `--open` so the browser opens automatically.
 
 **Existing-UI authority hard gate:** Before generating, pushing, showing, or
 describing a mockup as ready for a project with an existing UI, follow the

@@ -57,3 +57,23 @@ test('both execution methods preserve Design Lock gates over autonomous rulings'
     assert.match(content, /ruling cannot waive these\s+gates, expand that allowlist, or replace final human screenshot-and-diff\s+acceptance/i);
   }
 });
+
+test('brainstorming shortcuts preserve the written visual design and planning route', () => {
+  assert.match(brainstorming, /Design Lock precedence/);
+  assert.match(
+    brainstorming,
+    /(?:skipping|skip) questions[^.]*does not waive[^.]*Design Lock/is,
+  );
+  assert.match(
+    brainstorming,
+    /one-file[^.]*written governing spec[^.]*superpowers:writing-plans/is,
+  );
+});
+
+test('brainstorming reuses unchanged approval and selected execution', () => {
+  assert.match(
+    brainstorming,
+    /reuse[^.]*authorization[^.]*scope, destination, risk, and outcome[^.]*unchanged/is,
+  );
+  assert.match(brainstorming, /already selected execution method/is);
+});
