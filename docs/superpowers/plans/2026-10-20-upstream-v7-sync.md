@@ -54,8 +54,8 @@
 - [x] Repeat the same five pressure scenarios with the integrated skills in fresh sessions; report before/after evidence without equating static assertions or instruction simulations with live CLI evals.
 - [x] Obtain a fresh read-only review of the quiescent complete diff; resolve findings and rerun only affected verification.
 - [x] Update durable compatibility context only for new integration decisions; record exact checks and proof gaps in the milestone note.
-- [ ] Refresh origin/main and upstream/main once before completion. If either changed, reconcile before committing; prove both approved tips are retained.
-- [ ] Commit the verified local merge and prove ancestry and clean state. Run any committed-HEAD packaging check required by its script.
+- [x] Refresh origin/main and upstream/main once before completion. If either changed, reconcile before committing; prove both approved tips are retained.
+- [x] Commit the verified local merge and prove ancestry and clean state. Run any committed-HEAD packaging check required by its script.
 - [ ] Present the resulting diff and evidence, then request one approval for pushing the exact commit to origin/main and refreshing/verifying the installed plugin. Existing sessions require restart to load refreshed skills.
 
 ## Approval and completion boundary
@@ -75,3 +75,8 @@ Proposed execution is native implementation in this session with read-only press
 - Fresh remote reconciliation: origin/main is unchanged; upstream/main advanced
   to v7.0.1 (`2ce8aa1`). Complete the approved v7.0.0 checkpoint independently;
   do not claim latest-upstream sync. Extension to v7.0.1 is awaiting confirmation.
+
+Local merge completed as `8657898`; committed-HEAD packaging passed. Both approved
+parents are retained and the working tree is clean. Fresh read-only review found
+no substantive integration issues. The original local checkpoint is complete;
+latest-upstream extension and publication/activation remain pending.
