@@ -11,8 +11,8 @@
 ## Tasks
 - [x] Integrate upstream 7.0.2, resolving brainstorming conflicts while preserving authorization reuse and visual gates. Run existing Design Lock checks and independent instruction simulations.
 - [x] Add failing browser launcher tests for Chrome selection, default fallback, URL preservation; implement minimal selection and existing-browser guidance. Test first-screen auto-open behavior with server integration suite.
-- [ ] Verify affected upstream helpers, bootstrap and packaging contracts, shell lint, skill size/layout and browser suites. Inspect complete diff; record evidence and limitations.
-- [ ] Refresh stable base, complete local checkpoint commits, and report publication/plugin refresh boundary.
+- [x] Verify affected upstream helpers, bootstrap and packaging contracts, shell lint, skill size/layout and browser suites. Inspect complete diff; record evidence and limitations.
+- [x] Refresh stable base, complete local checkpoint commits, and report publication/plugin refresh boundary.
 
 ## Review focus
 - Visual shortcuts never bypass PNG/spec/planning/allowlist/final acceptance.
