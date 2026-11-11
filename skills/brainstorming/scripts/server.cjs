@@ -290,10 +290,15 @@ function companionUrl() {
 function browserLauncherForPlatform(url, {
   platform = process.platform,
   osRelease = require('os').release(),
-  env = process.env
+  env = process.env,
+  existsSync = fs.existsSync
 } = {}) {
   const isWSL = platform === 'linux' && /microsoft/i.test(osRelease);
-  if (platform === 'darwin') return { bin: 'open', args: [url] };
+  if (platform === 'darwin') {
+    // Use Launch Services to reuse normal Chrome, without a new instance/profile.
+    const chrome = '/Applications/Google Chrome.app';
+    return { bin: 'open', args: existsSync(chrome) ? ['-a', chrome, url] : [url] };
+  }
   if (platform === 'win32' || isWSL) {
     return { bin: 'rundll32.exe', args: ['url.dll,FileProtocolHandler', url] };
   }

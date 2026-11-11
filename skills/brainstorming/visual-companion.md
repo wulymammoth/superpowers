@@ -53,6 +53,21 @@ the network can't read the screens or inject events. After the first load the
 browser remembers the key via a cookie, so reloads and `/files/*` assets work
 without repeating it.
 
+**Browser handoff:** Let `--open` deliver the first screen to the human. On
+macOS it selects the installed `/Applications/Google Chrome.app` through Launch
+Services, reusing normal Chrome; if absent, it uses the default browser. An
+explicit `BRAINSTORM_OPEN_CMD` still takes precedence.
+
+For inspection or capture, first discover the available browser connections and
+reuse the human's existing Chrome tab when a tool supports it. Navigate to the
+complete authenticated URL from `server-info` and verify the actual companion
+content before reporting it open. A browser session or `about:blank` tab alone is
+not a successful handoff. If the available automation tool only launches a
+separate profile, keep the human-facing companion in normal Chrome and use that
+profile only for required automated capture; do not present it as their existing
+browser. Do not connect an automation client before the first-screen handoff:
+the server skips auto-open when a client is already connected.
+
 **Finding connection info:** The server writes its startup JSON to `$STATE_DIR/server-info`. If you launched the server in the background and didn't capture stdout, read that file to get the URL and port. When using `--project-dir`, check `<project>/.superpowers/brainstorm/` for the session directory.
 
 **Note:** Pass the project root as `--project-dir` so mockups persist in `.superpowers/brainstorm/` and survive server restarts. Without it, files go to `/tmp` and get cleaned up. Remind the user to add `.superpowers/` to `.gitignore` if it's not already there.

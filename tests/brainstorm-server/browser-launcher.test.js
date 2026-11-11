@@ -21,6 +21,20 @@ async function test(name, fn) {
 (async () => {
   console.log('\n--- Browser Launcher ---');
 
+  await test('macOS opens installed Chrome with the complete URL and no new instance', () => {
+    const url = 'http://localhost:54122/?key=abc&x=SAFE';
+    assert.deepStrictEqual(browserLauncherForPlatform(url, {
+      platform: 'darwin', env: {}, existsSync: p => p === '/Applications/Google Chrome.app'
+    }), { bin: 'open', args: ['-a', '/Applications/Google Chrome.app', url] });
+  });
+
+  await test('macOS falls back to the default browser when Chrome is absent', () => {
+    const url = 'http://localhost:54122/?key=abc';
+    assert.deepStrictEqual(browserLauncherForPlatform(url, {
+      platform: 'darwin', env: {}, existsSync: () => false
+    }), { bin: 'open', args: [url] });
+  });
+
   await test('Windows launcher does not route URLs through cmd.exe', () => {
     const url = 'http://localhost:54122/?key=abc&x=SAFE&echo=INJECTED';
     const launcher = browserLauncherForPlatform(url, {
